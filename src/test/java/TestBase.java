@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
     protected WebDriver driver;
+
     @BeforeSuite
     public void suitSetUp(){
         //create new driver chrome
@@ -13,13 +14,10 @@ public class TestBase {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(80, TimeUnit.SECONDS);
+    }
 
-        }
-
-    @Test
+    @Test(priority = 1)
     public void test(){
-
         driver.get("http://automationpractice.com/index.php");
-
     }
 }

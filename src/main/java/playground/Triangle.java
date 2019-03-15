@@ -1,5 +1,7 @@
 package playground;
 
+import com.google.common.base.Objects;
+
 public class Triangle implements Shape{
     private int firstLat; //defini
     private int secondLat;
@@ -14,5 +16,16 @@ public class Triangle implements Shape{
     public void draw() {
          int perimetru = firstLat+secondLat+thirdLat;
         System.out.println("Perimetru este " + perimetru +" "+ "and the color is" + " " + color);
+    }
+
+    public String toString(){
+        Integer perimetru = firstLat+secondLat+thirdLat;
+        if(color == null){
+            return "Perimetru este " + perimetru +" "+ "and has no col";
+
+        }else {
+            return "Perimetru este " + perimetru +" "+ "and the color is" + " " + color;
+
+        }
     }
 }
