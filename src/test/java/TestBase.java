@@ -16,8 +16,4 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(80, TimeUnit.SECONDS);
     }
 
-    @Test(priority = 1)
-    public void test(){
-        driver.get("http://automationpractice.com/index.php");
-    }
 }

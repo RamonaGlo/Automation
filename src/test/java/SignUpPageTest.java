@@ -2,7 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
-public class SignUpPage extends LoginPage {
+public class SignUpPageTest extends TestBase {
 //    @Test(priority = 3)
     public void clickCreateAnAccount(){
         driver.findElement(By.id("email_create")).sendKeys("rgologan@pentalog.com");
