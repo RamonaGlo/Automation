@@ -1,33 +1,48 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
+import framework.signup.SignUpPage;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class SignUpPageTest extends TestBase {
-//    @Test(priority = 3)
-    public void clickCreateAnAccount(){
-        driver.findElement(By.id("email_create")).sendKeys("rgologan@pentalog.com");
-        driver.findElement(By.id("SubmitCreate")).click();
-        driver.findElement(By.id("id_gender2")).click();
-        driver.findElement(By.id("customer_firstname")).sendKeys("Ramona");
-        driver.findElement(By.name("customer_lastname")).sendKeys("Marin");
-        driver.findElement(By.name("email")).sendKeys("");
-        driver.findElement(By.name("passwd")).sendKeys("123456789");
-        Select daysdrop = new Select(driver.findElement(By.id("days")));
-        daysdrop.selectByValue("20");
-        Select monthdrop = new Select(driver.findElement(By.id("months")));
-        monthdrop.selectByValue("10");
-        Select yeardrop = new Select(driver.findElement(By.id("years")));
-        yeardrop.selectByValue("1984");
-        driver.findElement(By.id("newsletter")).click();
-//        driver.findElement(By.name("firstname")).sendKeys("");
-        driver.findElement(By.id("address1")).sendKeys("Str.Ciurchi, nr. 126-128");
-        driver.findElement(By.id("city")).sendKeys("Iasi");
-        Select statedrop = new Select(driver.findElement(By.id("id_state")));
-        statedrop.selectByValue("10");
-        driver.findElement(By.id("postcode")).sendKeys("00000");
-        driver.findElement(By.name("phone_mobile")).sendKeys("0125478963");
-        driver.findElement(By.id("alias")).sendKeys("");
-        driver.findElement(By.id("submitAccount")).click();
+
+    private SignUpPage signUpPage;
+
+    @BeforeMethod
+    public void init() throws InterruptedException {
+        driver.get("http://automationpractice.com/index.php");
+        signUpPage = new SignUpPage(driver);
+        signUpPage.goTo();
+        Thread.sleep(4000);
     }
+
+    @AfterMethod
+    public void cleanUp() throws InterruptedException {
+        signUpPage.signOut();
+        Thread.sleep(4000);
+    }
+
+    @Test(priority = 1)
+    public void successfullSignUp() throws InterruptedException {
+        String signUpPageHeading = signUpPage.getHeadingValue();
+        Assert.assertEquals(signUpPageHeading, "AUTHENTICATION");
+        signUpPage.signUp("rgologanssx@pentalog.com","Ramona", "Mihai","", "123456789","","","Str.Ciurchi nr 126-128","Iasi","90001","0125478962","asasfas@asddasdfa.com");
+        Thread.sleep(4000);
+        String currentHeading = signUpPage.getHeadingValue();
+        Assert.assertEquals(currentHeading, "MY ACCOUNT");
+    }
+
+    @Test(priority = 2)
+    public void invalidSignUp() throws InterruptedException {
+        //TODO can throw error (element not present)
+//        Boolean isErrorDispalyed = loginPage.isErrorDispalyed();
+//        Assert.assertFalse(isErrorDispalyed);
+        signUpPage.create("rgologanss@pentalog.com");
+        Thread.sleep(4000);
+        Boolean isErrorDispalyed = signUpPage.isErrorDispalyed();
+        Assert.assertTrue(isErrorDispalyed);
+    }
+
+
 }
 

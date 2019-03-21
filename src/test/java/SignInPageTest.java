@@ -35,11 +35,11 @@ public class SignInPageTest extends TestBase {
     @Test(priority = 1)
     public void invalidLogin() throws InterruptedException {
         //TODO can throw error (element not present)
-        Boolean isErrorDispalyed = loginPage.isErrorDispalyed();
-        Assert.assertFalse(isErrorDispalyed);
-        loginPage.login("rgologan@pentalog.com", "12345678");
+//        Boolean isErrorDispalyed = loginPage.isErrorDispalyed();
+//        Assert.assertFalse(isErrorDispalyed);
+        loginPage.login("rgologan@pentalog.com", "1234567");
         Thread.sleep(4000);
-        isErrorDispalyed = loginPage.isErrorDispalyed();
+        Boolean isErrorDispalyed = loginPage.isErrorDispalyed();
         Assert.assertTrue(isErrorDispalyed);
     }
 

@@ -15,7 +15,7 @@ public class LoginPage extends BasePage    {
     @FindBy(id = "email")
     private WebElement emailInput;
 
-    @FindBy(id = "password")
+    @FindBy(id = "passwd")
     private WebElement passwordInput;
 
 
