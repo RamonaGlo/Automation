@@ -111,8 +111,7 @@ public class SignUpPage extends BasePage {
         emailAliasInput.sendKeys(alias);
         registerButton.click();
     }
-    public void signOut(){signoutButton.click();}
-    public void  create (String email){
+   public void  create (String email){
         emailInput.sendKeys(email);
         createButton.click();
     }

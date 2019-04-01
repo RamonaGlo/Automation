@@ -1,11 +1,11 @@
 package framework.singin;
-
 import framework.BasePage;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.w3c.dom.html.HTMLInputElement;
+
 
 public class LoginPage extends BasePage    {
 
@@ -25,8 +25,10 @@ public class LoginPage extends BasePage    {
     @FindBy(xpath = "//div[@id='center_column']/div[1]")
     private WebElement loginError;
 
-    @FindBy(className = "logout")
-    private WebElement signoutButton;
+
+
+    @FindBy (id = "authentication")
+    private  WebElement authentication;
 
 
     public LoginPage(WebDriver driver) {
@@ -44,10 +46,6 @@ public class LoginPage extends BasePage    {
         loginButton.click();
     }
 
-
-    public void signOut(){
-        signoutButton.click();
-    }
 
     public Boolean isErrorDispalyed(){
         return loginError.isDisplayed();

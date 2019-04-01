@@ -32,7 +32,7 @@ public class SignInPageTest extends TestBase {
         Assert.assertEquals(currentHeading, "MY ACCOUNT");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void invalidLogin() throws InterruptedException {
         //TODO can throw error (element not present)
 //        Boolean isErrorDispalyed = loginPage.isErrorDispalyed();
