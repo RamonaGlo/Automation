@@ -10,10 +10,10 @@ public class TestBase {
     @BeforeSuite
     public void suitSetUp(){
         //create new driver chrome
-        System.setProperty("webdriver.chrome.driver","D:/qaa/automation/chromedriver_win32/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","D:/qaa/automation/chromedriver_win32/chromedriver.exe");// ./../../resources
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(80, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
 }

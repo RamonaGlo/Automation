@@ -85,11 +85,7 @@ public class SignUpPage extends BasePage {
 
     public void  goTo(){goToLoginButton.click();}
 
-    public void  signUp(String emailCreate, String firstInput, String lastInput, String emaill, String password, String first, String last, String address, String city, String postCode, String mobile,String alias) {
-        emailInput.sendKeys(emailCreate);
-        createButton.click();
-        titleCheckBox.click();
-        firstNameInput.sendKeys(firstInput);
+    public void  signUp( String lastInput, String emaill, String password, String first, String last, String address, String city, String postCode, String mobile,String alias) {
         lastNameInput.sendKeys(lastInput);
         email.sendKeys(emaill);
         passwordInput.sendKeys(password);
@@ -111,7 +107,36 @@ public class SignUpPage extends BasePage {
         emailAliasInput.sendKeys(alias);
         registerButton.click();
     }
-   public void  create (String email){
+<<<<<<< HEAD
+//   public void  create (String email){
+=======
+
+    public SignUpPage checkEmail(String email){
+        emailInput.sendKeys(email);
+        createButton.click();
+        return this;
+    }
+
+    public SignUpPage selectTitle(String title){
+        if (title == "Mrs"){
+            titleCheckBox.click();
+        }else {
+            titleCheckBox.click();
+        }
+        return this;
+    }
+
+    public SignUpPage addFirstName(String firstName){
+        firstNameInput.sendKeys(firstName);
+        return this;
+    }
+
+
+
+
+//    public void signOut(){signoutButton.click();}
+    public void  create (String email){
+>>>>>>> 3d66bb8d754d94a4feab26a5fd0159aee9843f9c
         emailInput.sendKeys(email);
         createButton.click();
     }

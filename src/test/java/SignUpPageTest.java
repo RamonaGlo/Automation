@@ -26,7 +26,13 @@ public class SignUpPageTest extends TestBase {
     public void successfullSignUp() throws InterruptedException {
         String signUpPageHeading = signUpPage.getHeadingValue();
         Assert.assertEquals(signUpPageHeading, "AUTHENTICATION");
-        signUpPage.signUp("rgologanssx@pentalog.com","Ramona", "Mihai","", "123456789","","","Str.Ciurchi nr 126-128","Iasi","90001","0125478962","asasfas@asddasdfa.com");
+        signUpPage.checkEmail("rgologanssx@pentalog.com")
+                    .selectTitle("Mrs")
+                    .addFirstName("Ramona")
+        .signUp( "Mihai","", "123456789","","","Str.Ciurchi nr 126-128","Iasi","90001","0125478962","asasfas@asddasdfa.com");
+
+
+//        signUpPage.signUp( "Mihai","", "123456789","","","Str.Ciurchi nr 126-128","Iasi","90001","0125478962","asasfas@asddasdfa.com");
         Thread.sleep(4000);
         String currentHeading = signUpPage.getHeadingValue();
         Assert.assertEquals(currentHeading, "MY ACCOUNT");
