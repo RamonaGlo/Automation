@@ -1,11 +1,13 @@
 package framework.signup;
 
+import com.mifmif.common.regex.Generex;
 import framework.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.openxmlformats.schemas.spreadsheetml.x2006.main.STIconSetType;
 
 public class SignUpPage extends BasePage {
 
@@ -18,8 +20,11 @@ public class SignUpPage extends BasePage {
     @FindBy(id = "SubmitCreate")
     private WebElement createButton;
 
+    @FindBy(id = "id_gender1")
+    private WebElement titleCheckBoxMr;
+
     @FindBy(id = "id_gender2")
-    private WebElement titleCheckBox;
+    private WebElement titleCheckBoxMrs;
 
     @FindBy(id = "customer_firstname")
     private WebElement firstNameInput;
@@ -78,6 +83,7 @@ public class SignUpPage extends BasePage {
     @FindBy(className = "logout")
     private WebElement signoutButton;
 
+
     public SignUpPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -85,43 +91,19 @@ public class SignUpPage extends BasePage {
 
     public void  goTo(){goToLoginButton.click();}
 
-    public void  signUp( String lastInput, String emaill, String password, String first, String last, String address, String city, String postCode, String mobile,String alias) {
-        lastNameInput.sendKeys(lastInput);
-        email.sendKeys(emaill);
-        passwordInput.sendKeys(password);
-        Select daySelect = new Select(daysSelect);
-        daySelect.selectByValue("20");
-        Select monthSelect = new Select(monthsSelect);
-        monthSelect.selectByValue("10");
-        Select yearSelect = new Select(yearsSelect);
-        yearSelect.selectByValue("1984");
-        newsletterCheck.click();
-        firstName.sendKeys(first);
-        lastName.sendKeys(last);
-        addressInput.sendKeys(address);
-        cityInput.sendKeys(city);
-        Select state = new Select(stateSelect);
-        state.selectByValue("5");
-        postCodeInput.sendKeys(postCode);
-        phoneMobileInput.sendKeys(mobile);
-        emailAliasInput.sendKeys(alias);
-        registerButton.click();
-    }
-<<<<<<< HEAD
-//   public void  create (String email){
-=======
+    public SignUpPage checkEmail(){
 
-    public SignUpPage checkEmail(String email){
-        emailInput.sendKeys(email);
+        String regex = "\\w{10}\\@gmail\\.com";
+        emailInput.sendKeys(new Generex(regex).random());
         createButton.click();
         return this;
     }
 
     public SignUpPage selectTitle(String title){
         if (title == "Mrs"){
-            titleCheckBox.click();
+            titleCheckBoxMrs.click();
         }else {
-            titleCheckBox.click();
+            titleCheckBoxMr.click();
         }
         return this;
     }
@@ -130,16 +112,83 @@ public class SignUpPage extends BasePage {
         firstNameInput.sendKeys(firstName);
         return this;
     }
+    public SignUpPage addLastName(String lastInput){
+        lastNameInput.sendKeys(lastInput);
+        return this;
+    }
+    public SignUpPage emailSend (String emaill){
+        email.sendKeys(emaill);
+        return this;
+    }
+    public SignUpPage passwordSend (String password){
+        passwordInput.sendKeys(password);
+        return this;
+    }
+    public SignUpPage selectDays (){
+        Select daySelect = new Select(daysSelect);
+        daySelect.selectByValue("20");
+        return this;
+    }
+    public SignUpPage selectMonths ( ){
+        Select monthSelect = new Select(monthsSelect);
+        monthSelect.selectByValue("10");
+        return this;
+    }
+    public SignUpPage selectYears( ){
+        Select yearSelect = new Select(yearsSelect);
+        yearSelect.selectByValue("1984");
+        return this;
+    }
+    public SignUpPage newsletter (){
+        newsletterCheck.click();
+        return this;
+    }
+    public SignUpPage firstName (String first){
+        firstName.sendKeys(first);
+        return this;
+    }
+    public SignUpPage lastName (String last){
+        lastName.sendKeys(last);
+        return this;
+    }
+    public SignUpPage addAddress (String address){
+        addressInput.sendKeys(address);
+        return this;
+    }
+    public SignUpPage addCity (String city){
+        cityInput.sendKeys(city);
+        return this;
+    }
+    public SignUpPage selectState (){
+        Select state = new Select(stateSelect);
+        state.selectByValue("5");
+        return this;
+    }
+    public SignUpPage addPostCode (String postCode){
+        postCodeInput.sendKeys(postCode);
+        return this;
+    }
+    public SignUpPage addMobileNumber (String mobile){
+        phoneMobileInput.sendKeys(mobile);
+        return this;
+    }
+    public SignUpPage addAliasEmail (){
 
-
-
-
-//    public void signOut(){signoutButton.click();}
-    public void  create (String email){
->>>>>>> 3d66bb8d754d94a4feab26a5fd0159aee9843f9c
+        String regex = "\\w{10}\\@gmail\\.com";
+        emailAliasInput.sendKeys(new Generex(regex).random());
+            return this;
+    }
+    public SignUpPage registerButton (){
+        registerButton.click();
+        return this;
+    }
+    public SignUpPage createError (String email){
         emailInput.sendKeys(email);
         createButton.click();
+        return this;
     }
+
+
     public Boolean isErrorDispalyed(){
         return createError.isDisplayed();
     }

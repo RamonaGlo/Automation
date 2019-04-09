@@ -1,16 +1,19 @@
+import framework.Utility;
 import framework.singin.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class SignInPageTest extends TestBase {
 
     private LoginPage loginPage;
 
     @BeforeMethod
-    public void init() throws InterruptedException {
-        driver.get("http://automationpractice.com/index.php");
+    public void init() throws InterruptedException, IOException {
+        driver.get(Utility.fetchPropertlyValue("applicationURL").toString());
         loginPage = new LoginPage(driver);
         loginPage.goTo();
         Thread.sleep(4000);

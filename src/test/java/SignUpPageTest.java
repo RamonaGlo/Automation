@@ -26,13 +26,26 @@ public class SignUpPageTest extends TestBase {
     public void successfullSignUp() throws InterruptedException {
         String signUpPageHeading = signUpPage.getHeadingValue();
         Assert.assertEquals(signUpPageHeading, "AUTHENTICATION");
-        signUpPage.checkEmail("rgologanssx@pentalog.com")
+        signUpPage.checkEmail()
                     .selectTitle("Mrs")
                     .addFirstName("Ramona")
-        .signUp( "Mihai","", "123456789","","","Str.Ciurchi nr 126-128","Iasi","90001","0125478962","asasfas@asddasdfa.com");
+                    .addLastName("Manea")
+                    .emailSend("")
+                    .passwordSend("1212121")
+                    .selectDays()
+                    .selectMonths()
+                    .selectYears()
+                    .newsletter()
+                    .firstName("")
+                    .lastName("")
+                    .addAddress("Str. Ciurchi")
+                    .addCity("ROme")
+                    .selectState()
+                    .addPostCode("90001")
+                    .addMobileNumber("021587456")
+                    .addAliasEmail()
+                    .registerButton();
 
-
-//        signUpPage.signUp( "Mihai","", "123456789","","","Str.Ciurchi nr 126-128","Iasi","90001","0125478962","asasfas@asddasdfa.com");
         Thread.sleep(4000);
         String currentHeading = signUpPage.getHeadingValue();
         Assert.assertEquals(currentHeading, "MY ACCOUNT");
@@ -43,7 +56,7 @@ public class SignUpPageTest extends TestBase {
         //TODO can throw error (element not present)
 //        Boolean isErrorDispalyed = loginPage.isErrorDispalyed();
 //        Assert.assertFalse(isErrorDispalyed);
-        signUpPage.create("rgologanss@pentalog.com");
+        signUpPage.createError("rgologanss@pentalog.com");
         Thread.sleep(4000);
         Boolean isErrorDispalyed = signUpPage.isErrorDispalyed();
         Assert.assertTrue(isErrorDispalyed);
