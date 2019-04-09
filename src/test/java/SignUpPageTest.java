@@ -1,8 +1,11 @@
+import framework.Utility;
 import framework.signup.SignUpPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
 
 public class SignUpPageTest extends TestBase {
 
@@ -10,7 +13,11 @@ public class SignUpPageTest extends TestBase {
 
     @BeforeMethod
     public void init() throws InterruptedException {
-        driver.get("http://automationpractice.com/index.php");
+        try {
+            driver.get(Utility.fetchPropertlyValue("applicationURL").toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         signUpPage = new SignUpPage(driver);
         signUpPage.goTo();
         Thread.sleep(4000);
