@@ -15,20 +15,20 @@ public class TestBase {
     @BeforeSuite
     public void initiateDriverInstance() throws IOException {
         if (Utility.fetchPropertlyValue("browserName").toString().equalsIgnoreCase("chrome")) {
-            System.setProperty("webdriver.chrome.driver","C:/Users/rgologan/Workspace/auto/automation/src/driver/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver","./src/driver/chromedriver.exe");
             driver = new ChromeDriver();
         }
 
         else if (Utility.fetchPropertlyValue("browserName").toString().equalsIgnoreCase("firefox")) {
-            System.setProperty("webdriver.chrome.driver","C:/Users/rgologan/Workspace/auto/automation/src/driver/geckodriver.exe");
+            System.setProperty("webdriver.chrome.driver","./src/driver/geckodriver.exe");
             driver = new FirefoxDriver();
         }
         else if (Utility.fetchPropertlyValue("browserName").toString().equalsIgnoreCase("ie")) {
-            System.setProperty("webdriver.chrome.driver","C:/Users/rgologan/Workspace/auto/automation/src/driver/iedriverserver.exe");
+            System.setProperty("webdriver.chrome.driver","./src/driver/iedriverserver.exe");
             driver = new InternetExplorerDriver();
         }
         else{
-            System.setProperty("webdriver.chrome.driver","C:/Users/rgologan/Workspace/auto/automation/src/driver/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver","./src/driver/chromedriver.exe");
             driver = new ChromeDriver();
         }
         driver.get(Utility.fetchPropertlyValue("applicationURL").toString());
